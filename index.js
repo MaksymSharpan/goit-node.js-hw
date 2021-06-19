@@ -7,13 +7,11 @@ const {
   addContact,
 } = require('./contacts');
 
-// console.log(removeContact(11));
-// console.log(addContact('Maksym', '123@gmail.com', '666-666'));
-
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
       listContacts();
+
       break;
 
     case 'get':
@@ -21,11 +19,17 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case 'add':
-      addContact(name, email, phone);
+      setTimeout(() => {
+        addContact(name, email, phone);
+      }, 500);
+
       break;
 
     case 'remove':
-      removeContact(id);
+      setTimeout(() => {
+        removeContact(id);
+      }, 500);
+
       break;
 
     default:

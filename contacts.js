@@ -4,14 +4,12 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
 const contactsPath = path.join(__dirname, 'db', 'contacts.json');
-// console.log(contactsPath);
 
-// TODO: задокументировать каждую функцию
 async function listContacts() {
   try {
     const file = await fs.readFile(contactsPath);
     const data = JSON.parse(file);
-    // console.table(data);
+    console.table(data);
     return data;
   } catch (error) {
     throw error;
@@ -21,9 +19,8 @@ async function listContacts() {
 async function getContactById(contactId) {
   try {
     const contacts = await listContacts();
-    console.log(contacts);
     const contact = contacts.find(item => item.id === contactId);
-    // console.log(contact);
+    console.table(contact);
     return contact;
   } catch (error) {
     throw error;
@@ -36,7 +33,7 @@ async function removeContact(contactId) {
     const newContacts = contacts.filter(item => item.id !== contactId);
     const contactsToString = JSON.stringify(newContacts);
     fs.writeFile(contactsPath, contactsToString);
-    // console.table(newContacts);
+    console.table(newContacts);
     return newContacts;
   } catch (error) {
     throw error;
